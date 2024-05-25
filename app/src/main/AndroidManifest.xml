@@ -13,6 +13,11 @@
         android:theme="@style/Theme.Proyecto_Final"
         tools:targetApi="31">
         <activity
+            android:name=".Nav.Nav_Drawer_Client"
+            android:exported="false"
+            android:label="@string/title_activity_nav_drawer_client"
+            android:theme="@style/Theme.Proyecto_Final.NoActionBar" />
+        <activity
             android:name=".Cliente.RegistroClienteActivity"
             android:exported="false" />
         <activity

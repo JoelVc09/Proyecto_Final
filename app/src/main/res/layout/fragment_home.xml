@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Nav.ui.home.HomeFragment">
+
+    <EditText
+        android:id="@+id/txtSearch"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="17dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginBottom="1dp"
+        android:ems="10"
+        android:inputType="text"
+        app:layout_constraintBottom_toTopOf="@+id/recyclerView3"
+        app:layout_constraintEnd_toStartOf="@+id/tvRecientes"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageFilterButton" />
+
+    <SearchView
+        android:id="@+id/searchView"
+        android:layout_width="37dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="11dp"
+        app:layout_constraintBottom_toTopOf="@+id/recyclerView3"
+        app:layout_constraintStart_toStartOf="@+id/txtSearch"
+        app:layout_constraintTop_toBottomOf="@+id/imageFilterButton" />
+
+    <TextView
+        android:id="@+id/tvRecientes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="59dp"
+        android:text="Recientes"
+        app:layout_constraintEnd_toStartOf="@+id/imageFilterButton"
+        app:layout_constraintStart_toEndOf="@+id/txtSearch"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.utils.widget.ImageFilterButton
+        android:id="@+id/imageFilterButton"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="17dp"
+        android:layout_marginEnd="21dp"
+        android:src="@android:drawable/arrow_down_float"
+        app:layout_constraintBottom_toTopOf="@+id/searchView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tvRecientes"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView3"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginBottom="1dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/searchView" />
+</androidx.constraintlayout.widget.ConstraintLayout>
