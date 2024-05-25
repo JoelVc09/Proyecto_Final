@@ -9,7 +9,6 @@
     <string name="RUC">RUC:</string>
     <string name="Registrarse">Registrarse</string>
     <string name="RegistroEmpresa">Registro de Nueva Empresa</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="RegistroPropuesta">Registro de Nueva Propuesta</string>
     <string name="DescripcionPropuesta">¿Cómo describirías mejor tu propuesta?</string>
@@ -26,4 +25,14 @@
     <string name="NuevosSolesSigno">S/.</string>
     <string name="MontoEimpuestos">Este precio se mostrará al cliente + impuestos</string>
     <string name="CrearActividad">Crear Actividad</string>
+    <string name="MisActividades">Mis experiencias</string>
+    <string name="ActividadesEmpresa">Reservas</string>
+    <string name="IniciarSesion">Iniciar Sesión</string>
+    <string name="NuevoUsuario">¿Eres nuevo en TurismoGo?</string>
+    <string name="Ingresar">Ingresar</string>
+    <string name="RegistroUsuario">Registro de Nuevo Usuario</string>
+    <string name="NombreCompleto">Nombre Completo:</string>
+    <string name="FechaNacimiento">Fecha de Nacimiento:</string>
+    <string name="RegistrarUsuario">Registrarse como Usuario</string>
+    <string name="RegistrarEmpresa">Registrarse como Empresa</string>
 </resources>
