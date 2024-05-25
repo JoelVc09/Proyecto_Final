@@ -1,3 +1,29 @@
 <resources>
     <string name="app_name">Proyecto_Final</string>
+    <string name="NombreEmpresa">Nombre de Empresa:</string>
+    <string name="Email">Email:</string>
+    <string name="Confirme">Confirme Email:</string>
+    <string name="Contrasenia">Contraseña:</string>
+    <string name="ConfirmeContrasenia">Confirme Contraseña:</string>
+    <string name="Celular">Número Celular:</string>
+    <string name="RUC">RUC:</string>
+    <string name="Registrarse">Registrarse</string>
+    <string name="RegistroEmpresa">Registro de Nueva Empresa</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="RegistroPropuesta">Registro de Nueva Propuesta</string>
+    <string name="DescripcionPropuesta">¿Cómo describirías mejor tu propuesta?</string>
+    <string name="CantidadReservas">¿Cuántas personas pueden reservar?</string>
+    <string name="TituloPropuesta">Pónle un título corto</string>
+    <string name="ImagenPropuesta">Muestra la experiencia que ofreces</string>
+    <string name="Siguiente">Siguiente</string>
+    <string name="PropuestaDescripcion">Escribe una descripción</string>
+    <string name="ConfirmacionReservas">Decide cómo confirmar tus reservas</string>
+    <string name="rbInmediatas">Inmediatas</string>
+    <string name="rbPreaprobar">Pre-aprobar</string>
+    <string name="CostoExperiencia">¿Cuánto cuesta tu experiencia?</string>
+    <string name="recordatorio">Puedes cambiarlo cuando quieras</string>
+    <string name="NuevosSolesSigno">S/.</string>
+    <string name="MontoEimpuestos">Este precio se mostrará al cliente + impuestos</string>
+    <string name="CrearActividad">Crear Actividad</string>
 </resources>
