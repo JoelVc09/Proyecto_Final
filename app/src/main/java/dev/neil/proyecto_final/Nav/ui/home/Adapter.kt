@@ -6,5 +6,5 @@ data class Adapter (
     val NombrePaseo:String,
     val DesripcionPaseo:String,
     val Tiempo:String,
-    val Rate:Int
+    val Rate: Float
 )

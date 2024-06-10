@@ -11,6 +11,7 @@ import androidx.core.view.WindowInsetsCompat
 import dev.neil.proyecto_final.Cliente.RegistroClienteActivity
 import dev.neil.proyecto_final.Empresa.RegistroEmpresaActivity
 import dev.neil.proyecto_final.Nav.Nav_Drawer_Client
+import dev.neil.proyecto_final.Nav.ui.home.HomeFragment
 
 class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,7 +31,7 @@ class LoginActivity : AppCompatActivity() {
         val btnRegistrarEmpresa : Button = findViewById(R.id.btnRegistrarEmpresa)
 
         btnIngresar.setOnClickListener {
-            if(user.toString() == "sasa" && pass.toString() == "sasa"){
+            if(user.text.toString() == "sasa" && pass.text.toString() == "sasa"){
                 val intent = Intent(this, Nav_Drawer_Client::class.java)
                 startActivity(intent)
             }

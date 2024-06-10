@@ -24,13 +24,14 @@
         app:layout_constraintTop_toBottomOf="@+id/tvNombPaseo" />
 
     <ImageView
-        android:id="@+id/imageView4"
+        android:id="@+id/BackGroundImage"
         android:layout_width="392dp"
         android:layout_height="200dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@tools:sample/backgrounds/scenic" />
+        tools:srcCompat="@tools:sample/backgrounds/scenic"
+        tools:ignore="ContentDescription" />
 
     <TextView
         android:id="@+id/tvNombPaseo"
@@ -39,7 +40,7 @@
         android:layout_marginTop="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView4" />
+        app:layout_constraintTop_toBottomOf="@+id/BackGroundImage" />
 
     <RatingBar
         android:id="@+id/ratingBar"
@@ -51,7 +52,7 @@
         app:layout_constraintTop_toBottomOf="@+id/tvDescrPas" />
 
     <ImageView
-        android:id="@+id/imageView5"
+        android:id="@+id/PrincipalImage"
         android:layout_width="98dp"
         android:layout_height="87dp"
         android:layout_marginTop="144dp"
@@ -59,5 +60,6 @@
         app:layout_constraintHorizontal_bias="0.182"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@tools:sample/avatars" />
+        tools:srcCompat="@tools:sample/avatars"
+        tools:ignore="ContentDescription" />
 </androidx.constraintlayout.widget.ConstraintLayout>
