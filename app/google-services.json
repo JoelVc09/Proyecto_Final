@@ -1,0 +1,67 @@
+{
+  "project_info": {
+    "project_number": "744153504746",
+    "project_id": "esan20241",
+    "storage_bucket": "esan20241.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:744153504746:android:bec59f3e3f84b8e4d5b093",
+        "android_client_info": {
+          "package_name": "dev.neil.proyecto_final"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDW-RdmBrhaxmwY7FbCxX44TxCz5xQRJDs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:744153504746:android:379aa21c012b4820d5b093",
+        "android_client_info": {
+          "package_name": "dev.renzo.mont_prcdos"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDW-RdmBrhaxmwY7FbCxX44TxCz5xQRJDs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:744153504746:android:50df727b7736f680d5b093",
+        "android_client_info": {
+          "package_name": "dev.renzomont.lab12"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDW-RdmBrhaxmwY7FbCxX44TxCz5xQRJDs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

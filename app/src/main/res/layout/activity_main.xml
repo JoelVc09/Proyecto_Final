@@ -11,10 +11,55 @@
         android:id="@+id/btnIr"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Ir a Registro Empresa"
+        android:layout_marginBottom="164dp"
+        android:background="#FF5722"
+        android:backgroundTint="#4CAF50"
+        android:backgroundTintMode="add"
+        android:outlineAmbientShadowColor="#4CAF50"
+        android:outlineSpotShadowColor="#4CAF50"
+        android:shadowColor="#4CAF50"
+        android:text="Comencemos!"
+        android:textColor="#FFFFFF"
+        android:textColorLink="#4CAF50"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView37"
+        app:layout_constraintVertical_bias="0.688"
+        app:rippleColor="#4CAF50"
+        app:strokeColor="#4CAF50" />
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="225dp"
+        android:layout_height="243dp"
+        android:layout_marginTop="28dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView36"
+        app:srcCompat="@drawable/logo_turismogo" />
+
+    <TextView
+        android:id="@+id/textView36"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="@string/txtTituloPrincipal"
+        android:textSize="48sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView37"
+        android:layout_width="153dp"
+        android:layout_height="58dp"
+        android:layout_marginTop="32dp"
+        android:text="Listo para tener la mejor aventura en tus viajes?"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView5" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
