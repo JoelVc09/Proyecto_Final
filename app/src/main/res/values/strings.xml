@@ -27,14 +27,15 @@
     <string name="CrearActividad">Crear Actividad</string>
     <string name="MisActividades">Mis experiencias</string>
     <string name="ActividadesEmpresa">Reservas</string>
-    <string name="IniciarSesion">Iniciar Sesión</string>
-    <string name="NuevoUsuario">¿Eres nuevo en TurismoGo?</string>
+    <string name="IniciarSesion">¿Tienes una Cuenta? Inicia Sesión</string>
+    <string name="NuevoUsuario">¿Eres nuevo en TurismoGo? Registrate aquí!</string>
     <string name="Ingresar">Ingresar</string>
     <string name="RegistroUsuario">Registro de Nuevo Usuario</string>
     <string name="NombreCompleto">Nombre Completo:</string>
     <string name="FechaNacimiento">Fecha de Nacimiento:</string>
     <string name="RegistrarUsuario">Registrarse como Usuario</string>
     <string name="RegistrarEmpresa">Registrarse como Empresa</string>
+    <string name="txtTituloPrincipal">Turismo GO</string>
     <string name="title_activity_nav_drawer_client">Nav_Drawer_Client</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>

@@ -12,6 +12,7 @@ import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import dev.neil.proyecto_final.Cliente.RegistroClienteActivity
 import dev.neil.proyecto_final.Empresa.EmpresaHistorialActividadesFragment
+import dev.neil.proyecto_final.Nav.Nav_Drawer_Client
 
 class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -51,7 +52,7 @@ class LoginActivity : AppCompatActivity() {
                         ).show()
                         startActivity(
                             Intent(this
-                            , EmpresaHistorialActividadesFragment::class.java)
+                            , Nav_Drawer_Client::class.java)
                         )
                     }else{
                         Snackbar.make(
