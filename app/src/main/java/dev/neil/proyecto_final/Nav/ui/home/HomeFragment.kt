@@ -11,6 +11,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import dev.neil.proyecto_final.Nav.adapter.PaseoAdapter
+import dev.neil.proyecto_final.Nav.model.PaseoModel
 import dev.neil.proyecto_final.R
 
 
@@ -25,18 +27,18 @@ class HomeFragment : Fragment() {
         val rvGen: RecyclerView = view.findViewById(R.id.recyclerView3)
 
         rvGen.layoutManager = LinearLayoutManager(requireContext())
-        rvGen.adapter = HomeViewModel(playList())
+        rvGen.adapter = PaseoAdapter(playList())
 
         return view
 
 
     }
 
-    private fun playList(): List<Adapter>{
-        var lstSong: ArrayList<Adapter> = ArrayList()
+    private fun playList(): List<PaseoModel>{
+        var lstSong: ArrayList<PaseoModel> = ArrayList()
 
         lstSong.add(
-            Adapter(R.drawable.img1
+            PaseoModel(R.drawable.img1
                 ,R.drawable.img1
                 ,"Habitación en Zornitsa, Bulgaria"
                 ,"2 camas. Baño privado en el alojamiento"
@@ -44,7 +46,7 @@ class HomeFragment : Fragment() {
             ,4.5f)
         )
         lstSong.add(
-            Adapter(R.drawable.img2
+            PaseoModel(R.drawable.img2
                 ,R.drawable.img2
                 ,"Vivienda rentada entero en Brașov, Rumanía"
                 ,"6 huéspedes2 habitaciones2 camas2 baños"
@@ -52,7 +54,7 @@ class HomeFragment : Fragment() {
                 ,2.5f)
         )
         lstSong.add(
-            Adapter(R.drawable.img3
+            PaseoModel(R.drawable.img3
                 ,R.drawable.img3
                 ,"Villa entero en Agios Georgios, Grecia"
                 ,"4 huéspedes2 habitaciones2 camas2 baños"
@@ -60,7 +62,7 @@ class HomeFragment : Fragment() {
                 ,3.4f)
         )
         lstSong.add(
-            Adapter(R.drawable.img4
+            PaseoModel(R.drawable.img4
                 ,R.drawable.img4
                 ,"Minicasa en Varlaam, Rumanía"
                 ,"2 camas. Baño privado en el alojamiento"

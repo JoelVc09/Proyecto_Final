@@ -1,4 +1,4 @@
-package dev.neil.proyecto_final.Nav.ui.home
+package dev.neil.proyecto_final.Nav.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -10,10 +10,11 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.recyclerview.widget.RecyclerView
+import dev.neil.proyecto_final.Nav.model.PaseoModel
 import dev.neil.proyecto_final.R
 
-class HomeViewModel(private var lstGEN: List<Adapter>) :
-    RecyclerView.Adapter<HomeViewModel.ViewHolder>(){
+class PaseoAdapter(private var lstGEN: List<PaseoModel>) :
+    RecyclerView.Adapter<PaseoAdapter.ViewHolder>(){
     class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
         val backGroundImage : ImageView = itemView.findViewById(R.id.BackGroundImage)
         val principalImage : ImageView = itemView.findViewById(R.id.PrincipalImage)
@@ -22,25 +23,25 @@ class HomeViewModel(private var lstGEN: List<Adapter>) :
         val tvNombPaseo : TextView = itemView.findViewById(R.id.tvNombPaseo)
         val ratingBar : RatingBar = itemView.findViewById(R.id.ratingBar)
     }
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeViewModel.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         return ViewHolder(
             layoutInflater
-                .inflate(R.layout.fragment_home
+                .inflate(R.layout.item_paseo
                     ,parent
                     ,false)
 
         )
     }
 
-    override fun onBindViewHolder(holder: HomeViewModel.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val itemsong = lstGEN[position]
         holder.backGroundImage.setImageResource(itemsong.imagefondo)
         holder.principalImage.setImageResource(itemsong.imageEmpresa)
-        holder.tvTiempo.text = itemsong.Tiempo
-        holder.tvDescrPas.text =  itemsong.DesripcionPaseo
-        holder.tvNombPaseo.text =  itemsong.NombrePaseo
-        holder.ratingBar.rating = itemsong.Rate
+        holder.tvTiempo.text = itemsong.tiempo
+        holder.tvDescrPas.text =  itemsong.desripcionPaseo
+        holder.tvNombPaseo.text =  itemsong.nombrePaseo
+        holder.ratingBar.rating = itemsong.rate
 
     }
 
