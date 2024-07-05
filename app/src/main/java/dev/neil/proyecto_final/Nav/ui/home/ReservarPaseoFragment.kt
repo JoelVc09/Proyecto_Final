@@ -1,5 +1,6 @@
 package dev.neil.proyecto_final.Nav.ui.home
 
+import android.icu.text.SimpleDateFormat
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -7,12 +8,15 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.squareup.picasso.Picasso
 import dev.neil.proyecto_final.Nav.model.PaseoModel
 import dev.neil.proyecto_final.R
+import java.util.Date
+import java.util.Locale
 
 class ReservarPaseoFragment : Fragment() {
 
@@ -54,19 +58,19 @@ class ReservarPaseoFragment : Fragment() {
         val intervaloTiempo = paseo?.intervaloTiempo ?: 1
         val precio = paseo?.precios?.substring(3)?.toDoubleOrNull() ?: 0.0
 
-        // Initialize spNumMax Spinner
+
         val numMaxList = (1..numMax).toList()
         val numMaxAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, numMaxList)
         numMaxAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spNumMax.adapter = numMaxAdapter
 
-        // Initialize spHorario Spinner
+
         val horarioList = generateHorarioList(primerTurno, intervaloTiempo)
         val horarioAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, horarioList)
         horarioAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spHorario.adapter = horarioAdapter
 
-        // Update subtotal when the number of users changes
+
         spNumMax.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
                 val selectedNum = numMaxList[position]
@@ -78,7 +82,21 @@ class ReservarPaseoFragment : Fragment() {
                 // No action needed
             }
         }
+        btnIrAPagar.setOnClickListener {
+            val selectedNumPeople = spNumMax.selectedItem.toString().toInt()
+            val selectedTime = spHorario.selectedItem.toString()
 
+            val bundle = Bundle()
+            bundle.putSerializable("PASEO_KEY", paseo)
+            bundle.putDouble("precio", precio)
+            bundle.putString("fecha", SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(
+                Date()
+            ))
+            bundle.putInt("numPersonas", selectedNumPeople)
+            bundle.putString("horario", selectedTime)
+
+            findNavController().navigate(R.id.action_reservarPaseoFragment_to_pagarPaseoFragment, bundle)
+        }
         return view
     }
 

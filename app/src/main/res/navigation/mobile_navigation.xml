@@ -45,5 +45,18 @@
         android:id="@+id/reservarPaseoFragment"
         android:name="dev.neil.proyecto_final.Nav.ui.home.ReservarPaseoFragment"
         android:label="Haz una Reserva"
-        tools:layout="@layout/fragment_reservar_paseo" />
+        tools:layout="@layout/fragment_reservar_paseo" >
+        <action
+            android:id="@+id/action_reservarPaseoFragment_to_pagarPaseoFragment"
+            app:destination="@id/pagarPaseoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/pagarPaseoFragment"
+        android:name="dev.neil.proyecto_final.Nav.ui.home.PagarPaseoFragment"
+        android:label="Asegura esa experiencia"
+        tools:layout="@layout/fragment_pagar_paseo" >
+        <action
+            android:id="@+id/action_pagarPaseoFragment_to_nav_home"
+            app:destination="@id/nav_home" />
+    </fragment>
 </navigation>
