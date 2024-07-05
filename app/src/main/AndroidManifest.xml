@@ -15,6 +15,11 @@
         android:theme="@style/Theme.Proyecto_Final"
         tools:targetApi="31">
         <activity
+            android:name=".NavEmpresa.Nav_Drawer_Empresa_Activity"
+            android:exported="false"
+            android:label="@string/title_activity_nav_drawer_empresa"
+            android:theme="@style/Theme.Proyecto_Final.NoActionBar" />
+        <activity
             android:name=".ReservasActivity"
             android:exported="false" />
         <activity

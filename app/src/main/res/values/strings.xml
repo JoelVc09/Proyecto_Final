@@ -76,4 +76,6 @@
     <string name="IrAPagar">Ir a Pagar</string>
     <string name="subtotal_format">%.2f</string>
     <string name="HistorialActividadesCliente">Historial de Actividades</string>
+    <string name="cerrarSesion">Cerrar sesión</string>
+    <string name="title_activity_nav_drawer_empresa">Nav_Drawer_Empresa_Activity</string>
 </resources>
