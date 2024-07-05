@@ -16,9 +16,9 @@
 
     <TextView
         android:id="@+id/tvDescrPas"
-        android:layout_width="98dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="44dp"
+        android:layout_width="288dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvNombPaseo" />
@@ -35,21 +35,27 @@
 
     <TextView
         android:id="@+id/tvNombPaseo"
-        android:layout_width="99dp"
-        android:layout_height="25dp"
-        android:layout_marginTop="8dp"
+        android:layout_width="195dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="12dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.924"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/BackGroundImage" />
 
     <RatingBar
         android:id="@+id/ratingBar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="16dp"
+        android:layout_width="241dp"
+        android:layout_height="47dp"
+        android:layout_marginStart="56dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="5dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/tvTiempo"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvDescrPas" />
+        app:layout_constraintTop_toBottomOf="@+id/tvDescrPas"
+        app:layout_constraintVertical_bias="0.0" />
 
     <ImageView
         android:id="@+id/PrincipalImage"

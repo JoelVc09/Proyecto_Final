@@ -1,10 +1,10 @@
 package dev.neil.proyecto_final.Nav.model
 
 data class PaseoModel (
-    val imagefondo: Int,
-    val imageEmpresa:Int,
-    val nombrePaseo:String,
-    val desripcionPaseo:String,
-    val tiempo:String,
-    val rate: Float
+    var imagefondo: Int,
+    var imageEmpresa:Int,
+    var nombrePaseo:String,
+    var desripcionPaseo:String,
+    var tiempo:Int,
+    var rate: Float
 )

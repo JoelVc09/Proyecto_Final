@@ -44,10 +44,13 @@
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
 
-    <string name="menu_home">Incio</string>
+    <string name="menu_home">Inicio</string>
     <string name="menu_gallery">Iniciar Sesion</string>
     <string name="menu_slideshow">¿Eres una empresa?</string>
     <string name="menu_Reservas">Reservas</string>
     <string name="menu_Contacto">Contacto</string>
     <string name="menu_Help">Help</string>
+    <string name="Recientes">Recientes</string>
+    <string name="Puntuacion">Puntuación</string>
+    <string name="iniciaPronto">Inicia Pronto</string>
 </resources>
