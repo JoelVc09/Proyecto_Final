@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frameLayout5"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Nav.ui.home.ReservarPaseoFragment" >
+
+    <TextView
+        android:id="@+id/tvNombrePaseo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:hint="Paseo"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvNombreUsuario"
+        android:layout_width="262dp"
+        android:layout_height="36dp"
+        android:layout_marginTop="15dp"
+        android:hint="Nombre"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ivEmpresa" />
+
+    <ImageView
+        android:id="@+id/ivEmpresa"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvNombrePaseo"
+        tools:src="@tools:sample/avatars" />
+
+    <Spinner
+        android:id="@+id/spHorario"
+        android:layout_width="328dp"
+        android:layout_height="42dp"
+        android:layout_marginTop="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvNombreUsuario" />
+
+    <Spinner
+        android:id="@+id/spNumMax"
+        android:layout_width="123dp"
+        android:layout_height="52dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="80dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spHorario" />
+
+    <TextView
+        android:id="@+id/textView1000"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="15dp"
+        android:text="¿Reserva para cuántos?"
+        app:layout_constraintEnd_toStartOf="@+id/spNumMax"
+        app:layout_constraintTop_toTopOf="@+id/spNumMax" />
+
+    <TextView
+        android:id="@+id/textView47"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="15dp"
+        android:text="Precio Total S/."
+        app:layout_constraintEnd_toStartOf="@+id/tvSubTotal"
+        app:layout_constraintTop_toTopOf="@+id/tvSubTotal" />
+
+    <TextView
+        android:id="@+id/tvSubTotal"
+        android:layout_width="121dp"
+        android:layout_height="21dp"
+        android:layout_marginTop="20dp"
+        android:hint="SubTotal"
+        app:layout_constraintStart_toStartOf="@+id/spNumMax"
+        app:layout_constraintTop_toBottomOf="@+id/spNumMax" />
+
+    <Button
+        android:id="@+id/btnIrAPagar"
+        android:layout_width="130dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="70dp"
+        android:text="@string/IrAPagar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvSubTotal" />
+</androidx.constraintlayout.widget.ConstraintLayout>

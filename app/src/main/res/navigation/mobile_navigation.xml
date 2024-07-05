@@ -36,5 +36,14 @@
         android:id="@+id/paseoDetailsFragment"
         android:name="dev.neil.proyecto_final.Nav.ui.home.PaseoDetailsFragment"
         android:label="Detalles de la Actividad"
-        tools:layout="@layout/fragment_paseo_details" />
+        tools:layout="@layout/fragment_paseo_details" >
+        <action
+            android:id="@+id/action_paseoDetailsFragment_to_reservarPaseoFragment"
+            app:destination="@id/reservarPaseoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/reservarPaseoFragment"
+        android:name="dev.neil.proyecto_final.Nav.ui.home.ReservarPaseoFragment"
+        android:label="Haz una Reserva"
+        tools:layout="@layout/fragment_reservar_paseo" />
 </navigation>

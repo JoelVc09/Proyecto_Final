@@ -16,5 +16,8 @@ data class PaseoModel (
     var comentarios: List<ComentarioModel> = emptyList(),
     var ivPaseo1: String,
     var ivPaseo2: String,
-    var ivPaseo3: String
+    var ivPaseo3: String,
+    var primerTurno: Int,
+    var intervaloTiempo: Int,
+    var grupoMax: Int
 ): Serializable

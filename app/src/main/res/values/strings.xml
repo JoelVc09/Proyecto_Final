@@ -73,4 +73,6 @@
     <string name="Contacto">Contacto:</string>
     <string name="Reservar">Ir a Reservar</string>
     <string name="prueba">prueba</string>
+    <string name="IrAPagar">Ir a Pagar</string>
+    <string name="subtotal_format">%.2f</string>
 </resources>

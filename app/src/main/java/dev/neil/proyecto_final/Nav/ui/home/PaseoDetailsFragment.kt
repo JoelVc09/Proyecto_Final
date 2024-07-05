@@ -10,6 +10,7 @@ import android.widget.ImageView
 import android.widget.RatingBar
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.firestore.FirebaseFirestore
@@ -69,7 +70,11 @@ class PaseoDetailsFragment : Fragment() {
         } else {
             Log.e("PaseoDetailsFragment", "Paseo ID is empty")
         }
-
+        btnIrAReservar.setOnClickListener {
+            val bundle = Bundle()
+            bundle.putSerializable("PASEO_KEY", paseo)
+            findNavController().navigate(R.id.action_paseoDetailsFragment_to_reservarPaseoFragment, bundle)
+        }
         return view
     }
 

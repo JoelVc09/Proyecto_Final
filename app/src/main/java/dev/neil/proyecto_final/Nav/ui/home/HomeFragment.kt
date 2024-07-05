@@ -91,7 +91,10 @@ class HomeFragment : Fragment() {
                     emptyList(), //TODO Comentarios
                     document["ivPaseo1"].toString(),
                     document["ivPaseo2"].toString(),
-                    document["ivPaseo3"].toString()
+                    document["ivPaseo3"].toString(),
+                    document["primerTurno"].toString().toInt(),
+                    document["intervaloTiempo"].toString().toInt(),
+                    document["grupoMax"].toString().toInt()
                 )
             }
             filteredPaseos = paseos
@@ -151,7 +154,10 @@ class HomeFragment : Fragment() {
                     emptyList(), //TODO Comentarios
                     document["ivPaseo1"].toString(),
                     document["ivPaseo2"].toString(),
-                    document["ivPaseo3"].toString()
+                    document["ivPaseo3"].toString(),
+                    document["primerTurno"].toString().toInt(),
+                    document["intervaloTiempo"].toString().toInt(),
+                    document["grupoMax"].toString().toInt()
                 )
             }
             paseos = paseos.sortedByDescending { it.rate }
@@ -182,7 +188,10 @@ class HomeFragment : Fragment() {
                     emptyList(), //TODO Comentarios
                     document["ivPaseo1"].toString(),
                     document["ivPaseo2"].toString(),
-                    document["ivPaseo3"].toString()
+                    document["ivPaseo3"].toString(),
+                    document["primerTurno"].toString().toInt(),
+                    document["intervaloTiempo"].toString().toInt(),
+                    document["grupoMax"].toString().toInt()
                 )
             }
             paseos = paseos.sortedBy { it.tiempo }
