@@ -1,5 +1,6 @@
 package dev.neil.proyecto_final.Nav
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import com.google.android.material.snackbar.Snackbar
@@ -11,6 +12,8 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.ui.NavigationUI
+import dev.neil.proyecto_final.Contactanos
 import dev.neil.proyecto_final.R
 import dev.neil.proyecto_final.databinding.ActivityNavDrawerClientBinding
 
@@ -40,6 +43,27 @@ class Nav_Drawer_Client : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+
+        navView.setNavigationItemSelectedListener { menuItem ->
+            when (menuItem.itemId) {
+                R.id.nav_Contacto -> {
+                    // Iniciar la Activity Contactanos
+                    val intent = Intent(this, Contactanos::class.java)
+                    startActivity(intent)
+                    drawerLayout.closeDrawers()
+                    true
+                }
+                // Agregar más casos para otros ítems si es necesario
+                else -> {
+                    // Usar la navegación predeterminada para otros ítems
+                    val handled = NavigationUI.onNavDestinationSelected(menuItem, navController)
+                    if (handled) {
+                        drawerLayout.closeDrawers()
+                    }
+                    handled
+                }
+            }
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

@@ -13,6 +13,9 @@
         android:theme="@style/Theme.Proyecto_Final"
         tools:targetApi="31">
         <activity
+            android:name=".Contactanos"
+            android:exported="false" />
+        <activity
             android:name=".Nav.Nav_Drawer_Client"
             android:exported="true"
             android:label="@string/title_activity_nav_drawer_client"
@@ -22,14 +25,13 @@
             android:exported="false" />
         <activity
             android:name=".LoginActivity"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".Cliente.ClienteMainActivity"
             android:exported="false" />
@@ -38,9 +40,7 @@
             android:exported="false" />
         <activity
             android:name=".MainActivity"
-            android:exported="true">
-
-        </activity>
+            android:exported="true"></activity>
     </application>
 
 </manifest>
