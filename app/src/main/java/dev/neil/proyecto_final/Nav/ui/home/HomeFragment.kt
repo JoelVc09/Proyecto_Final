@@ -3,6 +3,7 @@ package dev.neil.proyecto_final.Nav.ui.home
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,8 +12,10 @@ import android.widget.ImageButton
 import android.widget.PopupMenu
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.firestore.FirebaseFirestore
 import dev.neil.proyecto_final.Nav.adapter.PaseoAdapter
 import dev.neil.proyecto_final.Nav.model.PaseoModel
 import dev.neil.proyecto_final.R
@@ -30,12 +33,18 @@ class HomeFragment : Fragment() {
         val view: View = inflater.inflate(R.layout.fragment_home, container, false)
         val rvGen: RecyclerView = view.findViewById(R.id.recyclerView3)
 
-        paseos = playList()
-        filteredPaseos = paseos
         paseoAdapter = PaseoAdapter(filteredPaseos)
-
         rvGen.layoutManager = LinearLayoutManager(requireContext())
         rvGen.adapter = paseoAdapter
+
+        // Set click listener for RecyclerView items
+        paseoAdapter.setOnItemClickListener { paseo ->
+            val bundle = Bundle()
+            bundle.putSerializable("PASEO_KEY", paseo)
+            findNavController().navigate(R.id.action_nav_home_to_paseoDetailsFragment, bundle)
+        }
+
+        fetchPaseos()
 
         return view
     }
@@ -60,27 +69,56 @@ class HomeFragment : Fragment() {
         })
     }
 
+    private fun fetchPaseos() {
+        val db = FirebaseFirestore.getInstance()
+        db.collection("paseos").addSnapshotListener { snap, error ->
+            if (error != null) {
+                Log.e("HomeFragment", "Error al obtener los datos de Firestore", error)
+                return@addSnapshotListener
+            }
+            paseos = snap!!.documents.map { document ->
+                PaseoModel(
+                    document.id,
+                    document["imagenFondo"].toString(),
+                    document["imagenEmpresa"].toString(),
+                    document["nombrePaseo"].toString(),
+                    document["descripcionPaseo"].toString(),
+                    document["tiempo"].toString().toInt(),
+                    document["rate"].toString().toFloat(),
+                    document["disponibilidad"].toString(),
+                    document["precios"].toString(),
+                    document["contacto"].toString(),
+                    emptyList(), //TODO Comentarios
+                    document["ivPaseo1"].toString(),
+                    document["ivPaseo2"].toString(),
+                    document["ivPaseo3"].toString()
+                )
+            }
+            filteredPaseos = paseos
+            paseoAdapter.updateItems(filteredPaseos)
+        }
+    }
+
     private fun showPopupMenu(view: View, filtroActual: TextView) {
         val popupMenu = PopupMenu(requireContext(), view)
+        val db = FirebaseFirestore.getInstance()
+
         popupMenu.inflate(R.menu.home_fragment_menu_filter) // Inflate your menu resource
 
         popupMenu.setOnMenuItemClickListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.opcion1 -> { // Reciente
-                    paseos = playList()
-                    filterPaseos("")
+                    fetchPaseos()
                     filtroActual.text = "Recientes"
                     true
                 }
                 R.id.opcion2 -> { // Puntuacion
-                    paseos = paseos.sortedByDescending { it.rate }
-                    filterPaseos("")
+                    fetchPaseosByRating()
                     filtroActual.text = "Puntuacion"
                     true
                 }
                 R.id.opcion3 -> { // Inicia Pronto
-                    paseos = paseos.sortedBy { it.tiempo }
-                    filterPaseos("")
+                    fetchPaseosByStartTime()
                     filtroActual.text = "Pronto"
                     true
                 }
@@ -91,58 +129,77 @@ class HomeFragment : Fragment() {
         popupMenu.show()
     }
 
+    private fun fetchPaseosByRating() {
+        val db = FirebaseFirestore.getInstance()
+        db.collection("paseos").addSnapshotListener { snap, error ->
+            if (error != null) {
+                Log.e("HomeFragment", "Error al obtener los datos de Firestore", error)
+                return@addSnapshotListener
+            }
+            paseos = snap!!.documents.map { document ->
+                PaseoModel(
+                    document.id,
+                    document["imagenFondo"].toString(),
+                    document["imagenEmpresa"].toString(),
+                    document["nombrePaseo"].toString(),
+                    document["descripcionPaseo"].toString(),
+                    document["tiempo"].toString().toInt(),
+                    document["rate"].toString().toFloat(),
+                    document["disponibilidad"].toString(),
+                    document["precios"].toString(),
+                    document["contacto"].toString(),
+                    emptyList(), //TODO Comentarios
+                    document["ivPaseo1"].toString(),
+                    document["ivPaseo2"].toString(),
+                    document["ivPaseo3"].toString()
+                )
+            }
+            paseos = paseos.sortedByDescending { it.rate }
+            filteredPaseos = paseos
+            paseoAdapter.updateItems(filteredPaseos)
+        }
+    }
+
+    private fun fetchPaseosByStartTime() {
+        val db = FirebaseFirestore.getInstance()
+        db.collection("paseos").addSnapshotListener { snap, error ->
+            if (error != null) {
+                Log.e("HomeFragment", "Error al obtener los datos de Firestore", error)
+                return@addSnapshotListener
+            }
+            paseos = snap!!.documents.map { document ->
+                PaseoModel(
+                    document.id,
+                    document["imagenFondo"].toString(),
+                    document["imagenEmpresa"].toString(),
+                    document["nombrePaseo"].toString(),
+                    document["descripcionPaseo"].toString(),
+                    document["tiempo"].toString().toInt(),
+                    document["rate"].toString().toFloat(),
+                    document["disponibilidad"].toString(),
+                    document["precios"].toString(),
+                    document["contacto"].toString(),
+                    emptyList(), //TODO Comentarios
+                    document["ivPaseo1"].toString(),
+                    document["ivPaseo2"].toString(),
+                    document["ivPaseo3"].toString()
+                )
+            }
+            paseos = paseos.sortedBy { it.tiempo }
+            filteredPaseos = paseos
+            paseoAdapter.updateItems(filteredPaseos)
+        }
+    }
+
     private fun filterPaseos(query: String) {
         filteredPaseos = if (query.isEmpty()) {
             paseos
         } else {
             paseos.filter {
                 it.nombrePaseo.contains(query, ignoreCase = true) ||
-                        it.desripcionPaseo.contains(query, ignoreCase = true)
+                        it.descripcionPaseo.contains(query, ignoreCase = true)
             }
         }
         paseoAdapter.updateItems(filteredPaseos)
-    }
-
-    private fun playList(): List<PaseoModel> {
-        val lstSong: ArrayList<PaseoModel> = ArrayList()
-
-        lstSong.add(
-            PaseoModel(
-                R.drawable.img1,
-                R.drawable.img1,
-                "Habitación en Zornitsa, Bulgaria",
-                "2 camas. Baño privado en el alojamiento",
-                2,
-                4.5f
-            )
-        )
-        lstSong.add(
-            PaseoModel(R.drawable.img2,
-                R.drawable.img2,
-                "Vivienda rentada entero en Brașov, Rumanía",
-                "6 huéspedes, 2 habitaciones, 2 camas, 2 baños",
-                24,
-                2.5f
-            )
-        )
-        lstSong.add(
-            PaseoModel(R.drawable.img3,
-                R.drawable.img3,
-                "Villa entero en Agios Georgios, Grecia",
-                "4 huéspedes, 2 habitaciones, 2 camas, 2 baños",
-                22,
-                3.4f
-            )
-        )
-        lstSong.add(
-            PaseoModel(R.drawable.img4,
-                R.drawable.img4,
-                "Minicasa en Varlaam, Rumanía",
-                "2 camas. Baño privado en el alojamiento",
-                12,
-                4.5f
-            )
-        )
-        return lstSong
     }
 }

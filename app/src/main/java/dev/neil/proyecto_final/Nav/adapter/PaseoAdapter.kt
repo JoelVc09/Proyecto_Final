@@ -7,6 +7,7 @@ import android.widget.ImageView
 import android.widget.RatingBar
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.squareup.picasso.Picasso
 import dev.neil.proyecto_final.Nav.model.PaseoModel
 import dev.neil.proyecto_final.R
 
@@ -36,15 +37,24 @@ class PaseoAdapter(private var lstGEN: List<PaseoModel>) :
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val itemsong = lstGEN[position]
-        holder.backGroundImage.setImageResource(itemsong.imagefondo)
-        holder.principalImage.setImageResource(itemsong.imageEmpresa)
+        Picasso.get().load(itemsong.imagenFondo.toString()).into(holder.backGroundImage)
+        Picasso.get().load(itemsong.imagenEmpresa.toString()).into(holder.principalImage)
         holder.tvTiempo.text = itemsong.tiempo.toString()+" horas"
-        holder.tvDescrPas.text = itemsong.desripcionPaseo
+        holder.tvDescrPas.text = itemsong.descripcionPaseo
         holder.tvNombPaseo.text = itemsong.nombrePaseo
         holder.ratingBar.rating = itemsong.rate
+        holder.itemView.setOnClickListener {
+            onItemClickListener?.invoke(lstGEN[position])
+        }
     }
 
     override fun getItemCount(): Int {
         return lstGEN.size
     }
+    private var onItemClickListener: ((PaseoModel) -> Unit)? = null
+
+    fun setOnItemClickListener(listener: (PaseoModel) -> Unit) {
+        onItemClickListener = listener
+    }
+
 }
