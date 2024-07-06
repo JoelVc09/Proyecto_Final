@@ -41,8 +41,7 @@ class HomeFragmentEmpresa : Fragment() {
         db = FirebaseFirestore.getInstance()
 
         btnCrearActEmpre.setOnClickListener {
-            val intent = Intent(requireContext(), DescripcionEmpresa::class.java)
-            startActivity(intent)
+            findNavController().navigate(R.id.nav_agregar_actividad)
         }
 /*
         paseoempresaAdapter = PaseoEmpresaAdapter(filteredPaseos)

@@ -35,4 +35,9 @@
             android:name="empresaUid"
             app:argType="string" />
     </fragment>
+    <activity
+        android:id="@+id/nav_Drawer_Empresas"
+        android:name="dev.neil.proyecto_final.Empresas.Nav_Drawer_Empresas"
+        android:label="app_bar_main_empresas"
+        tools:layout="@layout/app_bar_main_empresas" />
 </navigation>
