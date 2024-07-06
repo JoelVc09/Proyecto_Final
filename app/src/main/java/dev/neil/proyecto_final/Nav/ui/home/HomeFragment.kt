@@ -128,7 +128,7 @@ class HomeFragment : Fragment() {
                     document.getString("ivPaseo3") ?: "",
                     document.getString("primerTurno")?.toIntOrNull() ?: 0,
                     document.getString("intervaloTiempo")?.toIntOrNull() ?: 0,
-                    document.getString("grupoMax")?.toIntOrNull() ?: 0
+                    document.getString("grupoMax")?: "",
                 )
             }
             filteredPaseos = paseos
@@ -191,7 +191,7 @@ class HomeFragment : Fragment() {
                     document["ivPaseo3"].toString(),
                     document["primerTurno"].toString().toInt(),
                     document["intervaloTiempo"].toString().toInt(),
-                    document["grupoMax"].toString().toInt()
+                    document["grupoMax"].toString()
                 )
             }
             paseos = paseos.sortedByDescending { it.rate }
@@ -225,7 +225,7 @@ class HomeFragment : Fragment() {
                     document["ivPaseo3"].toString(),
                     document["primerTurno"].toString().toInt(),
                     document["intervaloTiempo"].toString().toInt(),
-                    document["grupoMax"].toString().toInt()
+                    document["grupoMax"].toString()
                 )
             }
             paseos = paseos.sortedBy { it.tiempo }

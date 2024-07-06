@@ -53,13 +53,14 @@ class ReservarPaseoFragment : Fragment() {
 
         Picasso.get().load(paseo?.imagenEmpresa).into(ivEmpresa)
 
-        val numMax = paseo?.grupoMax ?: 1
+        val numMax = paseo?.grupoMax ?:""
+        var numMaxInt = numMax.toInt()
         val primerTurno = paseo?.primerTurno ?: 0
         val intervaloTiempo = paseo?.intervaloTiempo ?: 1
         val precio = paseo?.precios?.substring(3)?.toDoubleOrNull() ?: 0.0
 
 
-        val numMaxList = (1..numMax).toList()
+        val numMaxList = (1..numMaxInt).toList()
         val numMaxAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, numMaxList)
         numMaxAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spNumMax.adapter = numMaxAdapter
@@ -103,11 +104,15 @@ class ReservarPaseoFragment : Fragment() {
     private fun generateHorarioList(primerTurno: Int, intervaloTiempo: Int): List<String> {
         val horarioList = mutableListOf<String>()
         var currentTurno = primerTurno
-
+        var i=0
         while (currentTurno < 22) { // 22 hours is 10 PM
             val hour = String.format("%02d:00", currentTurno)
             horarioList.add(hour)
             currentTurno += intervaloTiempo
+            i=i+1
+            if (i>15){
+                break
+            }
         }
 
         return horarioList

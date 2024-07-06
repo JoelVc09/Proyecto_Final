@@ -19,5 +19,5 @@ data class PaseoModel (
     var ivPaseo3: String,
     var primerTurno: Int,
     var intervaloTiempo: Int,
-    var grupoMax: Int
+    var grupoMax: String,
 ): Serializable

@@ -9,6 +9,19 @@
         android:id="@+id/nav_home_Empresas"
         android:name="dev.neil.proyecto_final.Empresas.ui.HomeFragmentEmpresa"
         android:label="@string/menu_home_Empresas"
-        tools:layout="@layout/fragment_home_empresa" />
+        tools:layout="@layout/fragment_home_empresa" >
+        <action
+            android:id="@+id/action_nav_home_Empresas_to_crearActividadFragment"
+            app:destination="@id/nav_agregar_actividad" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_agregar_actividad"
+        android:name="dev.neil.proyecto_final.Empresas.ui.CrearActividadFragment"
+        android:label="fragment_crear_actividad"
+        tools:layout="@layout/fragment_crear_actividad" >
+        <action
+            android:id="@+id/action_crearActividadFragment_to_nav_home_Empresas"
+            app:destination="@id/nav_home_Empresas" />
+    </fragment>
 
 </navigation>

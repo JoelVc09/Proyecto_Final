@@ -8,6 +8,10 @@
             android:id="@+id/nav_home_Empresas"
             android:icon="@drawable/ic_menu_camera"
             android:title="@string/menu_home_Empresas" />
+        <item
+            android:id="@+id/nav_agregar_actividad"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="@string/agregaActividad" />
         <!-- <item
             android:id="@+id/nav_gallery"
             android:icon="@drawable/ic_menu_gallery"

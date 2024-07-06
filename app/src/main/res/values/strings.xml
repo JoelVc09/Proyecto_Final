@@ -81,5 +81,21 @@
     <string name="menu_gallery_Empresas">Gallery_Empresas</string>
     <string name="menu_slideshow_Empresas">Slideshow_Empresas</string>
     <string name="title_activity_nav_drawer_empresa">Nav_Drawer_Empresa</string>
+    <string name="CreaExperiencia">Crea una experiencia</string>
+    <string name="zzz" />
+    <string name="DescrpCategoria">¿Cómo describirías mejor tu propuesta?</string>
+    <string name="MaxPers">¿Cúantos máximo por grupo?</string>
+    <string name="MuestraExperiencia">Muestra la experiencia que ofreces</string>
+    <string name="Logo">El Logo de tu Empresa</string>
+    <string name="hasta3Mas">Puedes subir hasta 3 imágenes más</string>
+    <string name="Titulo">Ponle un título corto</string>
+    <string name="Descrp">Escribe una descripción</string>
+    <string name="DecideConfirmar">Decide cómo confimar tus reservas</string>
+    <string name="Precio">¿Cuánto cuesta tu experiencia?</string>
+    <string name="telefono">Número de teléfono</string>
+    <string name="Publicar">Publicar Actividad</string>
+    <string name="Inmediato">Inmediatas</string>
+    <string name="Preaprobar">Pre-aprobar</string>
+    <string name="agregaActividad">Agregar actividad</string>
 
 </resources>
