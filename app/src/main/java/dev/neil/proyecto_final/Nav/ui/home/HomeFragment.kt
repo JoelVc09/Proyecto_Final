@@ -15,6 +15,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import dev.neil.proyecto_final.Nav.adapter.PaseoAdapter
 import dev.neil.proyecto_final.Nav.model.PaseoModel
@@ -24,6 +25,10 @@ class HomeFragment : Fragment() {
     private lateinit var paseoAdapter: PaseoAdapter
     private var paseos: List<PaseoModel> = listOf()
     private var filteredPaseos: List<PaseoModel> = listOf()
+    private lateinit var auth: FirebaseAuth
+    private lateinit var db: FirebaseFirestore
+    private var isEmpresa: Boolean = false
+    private var empresaId: String? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,20 +38,44 @@ class HomeFragment : Fragment() {
         val view: View = inflater.inflate(R.layout.fragment_home, container, false)
         val rvGen: RecyclerView = view.findViewById(R.id.recyclerView3)
 
+        auth = FirebaseAuth.getInstance()
+        db = FirebaseFirestore.getInstance()
+
         paseoAdapter = PaseoAdapter(filteredPaseos)
         rvGen.layoutManager = LinearLayoutManager(requireContext())
         rvGen.adapter = paseoAdapter
 
-        // Set click listener for RecyclerView items
         paseoAdapter.setOnItemClickListener { paseo ->
             val bundle = Bundle()
             bundle.putSerializable("PASEO_KEY", paseo)
             findNavController().navigate(R.id.action_nav_home_to_paseoDetailsFragment, bundle)
         }
 
-        fetchPaseos()
+        checkUserType()
 
         return view
+    }
+
+    private fun checkUserType() {
+        val currentUser = auth.currentUser
+        if (currentUser != null) {
+            db.collection("empresas_turismogo")
+                .whereEqualTo("email", currentUser.email)
+                .get()
+                .addOnSuccessListener { documents ->
+                    if (!documents.isEmpty) {
+                        isEmpresa = true
+                        empresaId = documents.documents[0].id
+                    }
+                    fetchPaseos()
+                }
+                .addOnFailureListener {
+                    Log.e("HomeFragment", "Error al verificar el tipo de usuario", it)
+                    fetchPaseos()
+                }
+        } else {
+            fetchPaseos()
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -70,8 +99,13 @@ class HomeFragment : Fragment() {
     }
 
     private fun fetchPaseos() {
-        val db = FirebaseFirestore.getInstance()
-        db.collection("paseos").addSnapshotListener { snap, error ->
+        val query = if (isEmpresa && empresaId != null) {
+            db.collection("paseos").whereEqualTo("empresaId", empresaId)
+        } else {
+            db.collection("paseos")
+        }
+
+        query.addSnapshotListener { snap, error ->
             if (error != null) {
                 Log.e("HomeFragment", "Error al obtener los datos de Firestore", error)
                 return@addSnapshotListener
