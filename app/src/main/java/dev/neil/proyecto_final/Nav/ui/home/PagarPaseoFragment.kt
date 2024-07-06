@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import dev.neil.proyecto_final.Nav.model.PaseoModel
 import dev.neil.proyecto_final.R
@@ -29,12 +30,15 @@ class PagarPaseoFragment : Fragment() {
         val paseoid = paseo?.documentId
         val nombrePaseo = paseo?.nombrePaseo
         val imagenPaseo = paseo?.imagenEmpresa
+        val auth = FirebaseAuth.getInstance()
+        val userId = auth.currentUser?.uid
+        val uid = userId?: ""
         
         val btnPagarPaseo: Button = view.findViewById(R.id.btnPagarPaseo)
         btnPagarPaseo.text = "Pagar "+precio*numPersonas+" Soles"
         
         btnPagarPaseo.setOnClickListener {
-            subirDatosHistorial(precio, fecha, numPersonas, horario, paseoid, nombrePaseo, imagenPaseo)
+            subirDatosHistorial(precio, fecha, numPersonas, horario, paseoid, nombrePaseo, imagenPaseo, uid)
         }
 
         return view
@@ -46,7 +50,8 @@ class PagarPaseoFragment : Fragment() {
         horario: String,
         paseoid: String?,
         nombrePaseo: String?,
-        imagenPaseo: String?
+        imagenPaseo: String?,
+        uid: String,
     ) {
         val db = FirebaseFirestore.getInstance()
         val datosHistorial = hashMapOf(
@@ -56,7 +61,8 @@ class PagarPaseoFragment : Fragment() {
             "horario" to horario,
             "paseoid" to paseoid,
             "nombrePaseo" to nombrePaseo,
-            "imagenPaseo" to imagenPaseo
+            "imagenPaseo" to imagenPaseo,
+            "uid" to uid
         )
 
         db.collection("historial")
