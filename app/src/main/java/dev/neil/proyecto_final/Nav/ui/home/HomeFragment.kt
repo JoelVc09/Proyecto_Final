@@ -29,12 +29,12 @@ class HomeFragment : Fragment() {
     private lateinit var db: FirebaseFirestore
     private var isEmpresa: Boolean = false
     private var empresaId: String? = null
+    private var empresaUid: String? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         val view: View = inflater.inflate(R.layout.fragment_home, container, false)
         val rvGen: RecyclerView = view.findViewById(R.id.recyclerView3)
 
@@ -65,7 +65,7 @@ class HomeFragment : Fragment() {
                 .addOnSuccessListener { documents ->
                     if (!documents.isEmpty) {
                         isEmpresa = true
-                        empresaId = documents.documents[0].id
+                        empresaUid = documents.documents[0].getString("uid")
                     }
                     fetchPaseos()
                 }
@@ -99,8 +99,8 @@ class HomeFragment : Fragment() {
     }
 
     private fun fetchPaseos() {
-        val query = if (isEmpresa && empresaId != null) {
-            db.collection("paseos").whereEqualTo("empresaId", empresaId)
+        val query = if (isEmpresa && empresaUid != null) {
+            db.collection("paseos").whereEqualTo("uid", empresaUid)
         } else {
             db.collection("paseos")
         }
@@ -113,22 +113,22 @@ class HomeFragment : Fragment() {
             paseos = snap!!.documents.map { document ->
                 PaseoModel(
                     document.id,
-                    document["imagenFondo"].toString(),
-                    document["imagenEmpresa"].toString(),
-                    document["nombrePaseo"].toString(),
-                    document["descripcionPaseo"].toString(),
-                    document["tiempo"].toString().toInt(),
-                    document["rate"].toString().toFloat(),
-                    document["disponibilidad"].toString(),
-                    document["precios"].toString(),
-                    document["contacto"].toString(),
-                    emptyList(), //TODO Comentarios
-                    document["ivPaseo1"].toString(),
-                    document["ivPaseo2"].toString(),
-                    document["ivPaseo3"].toString(),
-                    document["primerTurno"].toString().toInt(),
-                    document["intervaloTiempo"].toString().toInt(),
-                    document["grupoMax"].toString().toInt()
+                    document.getString("imagenFondo") ?: "",
+                    document.getString("imagenEmpresa") ?: "",
+                    document.getString("nombrePaseo") ?: "",
+                    document.getString("descripcionPaseo") ?: "",
+                    document.getString("tiempo")?.toIntOrNull() ?: 0,
+                    document.getString("rate")?.toFloatOrNull() ?: 0f,
+                    document.getString("disponibilidad") ?: "",
+                    document.getString("precios") ?: "",
+                    document.getString("contacto") ?: "",
+                    emptyList(), // TODO: Comentarios
+                    document.getString("ivPaseo1") ?: "",
+                    document.getString("ivPaseo2") ?: "",
+                    document.getString("ivPaseo3") ?: "",
+                    document.getString("primerTurno")?.toIntOrNull() ?: 0,
+                    document.getString("intervaloTiempo")?.toIntOrNull() ?: 0,
+                    document.getString("grupoMax")?.toIntOrNull() ?: 0
                 )
             }
             filteredPaseos = paseos
