@@ -48,7 +48,7 @@ class Nav_Drawer_Empresas : AppCompatActivity() {
 
         navView.setNavigationItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
-                R.id.nav_clientes_por_actividad -> {
+                R.id.nav_agregar_actividad -> {
                     val auth = FirebaseAuth.getInstance()
                     val db = FirebaseFirestore.getInstance()
 

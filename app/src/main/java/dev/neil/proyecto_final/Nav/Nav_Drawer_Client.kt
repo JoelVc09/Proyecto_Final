@@ -14,6 +14,7 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.ui.NavigationUI
 import dev.neil.proyecto_final.Contactanos
+import dev.neil.proyecto_final.LoginActivity
 import dev.neil.proyecto_final.R
 import dev.neil.proyecto_final.ReservasActivity
 import dev.neil.proyecto_final.databinding.ActivityNavDrawerClientBinding
@@ -47,6 +48,13 @@ class Nav_Drawer_Client : AppCompatActivity() {
 
         navView.setNavigationItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
+                R.id.nav_home -> {
+                    // Iniciar la Activity Contactanos
+                    val intent = Intent(this, Nav_Drawer_Client::class.java)
+                    startActivity(intent)
+                    drawerLayout.closeDrawers()
+                    true
+                }
                 R.id.nav_Contacto -> {
                     // Iniciar la Activity Contactanos
                     val intent = Intent(this, Contactanos::class.java)
@@ -57,6 +65,20 @@ class Nav_Drawer_Client : AppCompatActivity() {
                 R.id.nav_Reservas -> {
                     // Iniciar la Activity Reservas
                     val intent = Intent(this, ReservasActivity::class.java)
+                    startActivity(intent)
+                    drawerLayout.closeDrawers()
+                    true
+                }
+                R.id.nav_gallery -> {
+                    // Iniciar la Activity Reservas
+                    val intent = Intent(this, LoginActivity::class.java)
+                    startActivity(intent)
+                    drawerLayout.closeDrawers()
+                    true
+                }
+                R.id.nav_slideshow -> {
+                    // Iniciar la Activity Reservas
+                    val intent = Intent(this, LoginActivity::class.java)
                     startActivity(intent)
                     drawerLayout.closeDrawers()
                     true
