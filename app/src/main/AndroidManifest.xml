@@ -25,6 +25,14 @@
             android:exported="true"
             android:label="@string/title_activity_nav_drawer_client"
             android:theme="@style/Theme.Proyecto_Final.NoActionBar" />
+
+        <activity
+            android:name=".Empresas.Nav_Drawer_Empresas"
+            android:exported="true"
+            android:label="@string/title_activity_nav_drawer_empresa"
+            android:theme="@style/Theme.Proyecto_Final.NoActionBar" />
+
+
         <activity
             android:name=".Cliente.RegistroClienteActivity"
             android:exported="false" />

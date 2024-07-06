@@ -15,6 +15,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import dev.neil.proyecto_final.Nav.adapter.PaseoAdapter
 import dev.neil.proyecto_final.Nav.model.PaseoModel
@@ -24,29 +25,57 @@ class HomeFragment : Fragment() {
     private lateinit var paseoAdapter: PaseoAdapter
     private var paseos: List<PaseoModel> = listOf()
     private var filteredPaseos: List<PaseoModel> = listOf()
+    private lateinit var auth: FirebaseAuth
+    private lateinit var db: FirebaseFirestore
+    private var isEmpresa: Boolean = false
+    private var empresaId: String? = null
+    private var empresaUid: String? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         val view: View = inflater.inflate(R.layout.fragment_home, container, false)
         val rvGen: RecyclerView = view.findViewById(R.id.recyclerView3)
+
+        auth = FirebaseAuth.getInstance()
+        db = FirebaseFirestore.getInstance()
 
         paseoAdapter = PaseoAdapter(filteredPaseos)
         rvGen.layoutManager = LinearLayoutManager(requireContext())
         rvGen.adapter = paseoAdapter
 
-        // Set click listener for RecyclerView items
         paseoAdapter.setOnItemClickListener { paseo ->
             val bundle = Bundle()
             bundle.putSerializable("PASEO_KEY", paseo)
             findNavController().navigate(R.id.action_nav_home_to_paseoDetailsFragment, bundle)
         }
 
-        fetchPaseos()
+        checkUserType()
 
         return view
+    }
+
+    private fun checkUserType() {
+        val currentUser = auth.currentUser
+        if (currentUser != null) {
+            db.collection("empresas_turismogo")
+                .whereEqualTo("email", currentUser.email)
+                .get()
+                .addOnSuccessListener { documents ->
+                    if (!documents.isEmpty) {
+                        isEmpresa = true
+                        empresaUid = documents.documents[0].getString("uid")
+                    }
+                    fetchPaseos()
+                }
+                .addOnFailureListener {
+                    Log.e("HomeFragment", "Error al verificar el tipo de usuario", it)
+                    fetchPaseos()
+                }
+        } else {
+            fetchPaseos()
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -70,8 +99,13 @@ class HomeFragment : Fragment() {
     }
 
     private fun fetchPaseos() {
-        val db = FirebaseFirestore.getInstance()
-        db.collection("paseos").addSnapshotListener { snap, error ->
+        val query = if (isEmpresa && empresaUid != null) {
+            db.collection("paseos").whereEqualTo("uid", empresaUid)
+        } else {
+            db.collection("paseos")
+        }
+
+        query.addSnapshotListener { snap, error ->
             if (error != null) {
                 Log.e("HomeFragment", "Error al obtener los datos de Firestore", error)
                 return@addSnapshotListener
@@ -79,22 +113,22 @@ class HomeFragment : Fragment() {
             paseos = snap!!.documents.map { document ->
                 PaseoModel(
                     document.id,
-                    document["imagenFondo"].toString(),
-                    document["imagenEmpresa"].toString(),
-                    document["nombrePaseo"].toString(),
-                    document["descripcionPaseo"].toString(),
-                    document["tiempo"].toString().toInt(),
-                    document["rate"].toString().toFloat(),
-                    document["disponibilidad"].toString(),
-                    document["precios"].toString(),
-                    document["contacto"].toString(),
-                    emptyList(), //TODO Comentarios
-                    document["ivPaseo1"].toString(),
-                    document["ivPaseo2"].toString(),
-                    document["ivPaseo3"].toString(),
-                    document["primerTurno"].toString().toInt(),
-                    document["intervaloTiempo"].toString().toInt(),
-                    document["grupoMax"].toString().toInt()
+                    document.getString("imagenFondo") ?: "",
+                    document.getString("imagenEmpresa") ?: "",
+                    document.getString("nombrePaseo") ?: "",
+                    document.getString("descripcionPaseo") ?: "",
+                    document.getString("tiempo")?.toIntOrNull() ?: 0,
+                    document.getString("rate")?.toFloatOrNull() ?: 0f,
+                    document.getString("disponibilidad") ?: "",
+                    document.getString("precios") ?: "",
+                    document.getString("contacto") ?: "",
+                    emptyList(), // TODO: Comentarios
+                    document.getString("ivPaseo1") ?: "",
+                    document.getString("ivPaseo2") ?: "",
+                    document.getString("ivPaseo3") ?: "",
+                    document.getString("primerTurno")?.toIntOrNull() ?: 0,
+                    document.getString("intervaloTiempo")?.toIntOrNull() ?: 0,
+                    document.getString("grupoMax")?.toIntOrNull() ?: 0
                 )
             }
             filteredPaseos = paseos
