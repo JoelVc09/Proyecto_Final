@@ -23,5 +23,16 @@
             android:id="@+id/action_crearActividadFragment_to_nav_home_Empresas"
             app:destination="@id/nav_home_Empresas" />
     </fragment>
-
+    <fragment
+        android:id="@+id/clientesPorActividadFragment"
+        android:name="dev.neil.proyecto_final.Nav.ui.empresa.ClientesPorActividadFragment"
+        android:label="Clientes por Actividad"
+        tools:layout="@layout/fragment_clientes_por_actividad">
+        <argument
+            android:name="empresaId"
+            app:argType="string" />
+        <argument
+            android:name="empresaUid"
+            app:argType="string" />
+    </fragment>
 </navigation>
