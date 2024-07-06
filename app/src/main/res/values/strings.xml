@@ -76,4 +76,10 @@
     <string name="IrAPagar">Ir a Pagar</string>
     <string name="subtotal_format">%.2f</string>
     <string name="HistorialActividadesCliente">Historial de Actividades</string>
+
+    <string name="menu_home_Empresas">Home_Empresas</string>
+    <string name="menu_gallery_Empresas">Gallery_Empresas</string>
+    <string name="menu_slideshow_Empresas">Slideshow_Empresas</string>
+    <string name="title_activity_nav_drawer_empresa">Nav_Drawer_Empresa</string>
+
 </resources>

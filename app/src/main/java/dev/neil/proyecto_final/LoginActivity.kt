@@ -14,6 +14,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import dev.neil.proyecto_final.Cliente.RegistroClienteActivity
 import dev.neil.proyecto_final.Empresa.EmpresaHistorialActividadesFragment
 import dev.neil.proyecto_final.Empresa.RegistroEmpresaActivity
+import dev.neil.proyecto_final.Empresas.Nav_Drawer_Empresas
 import dev.neil.proyecto_final.Nav.Nav_Drawer_Client
 
 
@@ -70,16 +71,13 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun checkUserType(email: String) {
-        var TipoUsuario: String? = null
         db.collection("usuarios_turismogo")
             .whereEqualTo("email", email)
             .get()
             .addOnSuccessListener { documents ->
                 if (!documents.isEmpty) {
                     // Es un usuario
-                    val intent = Intent(this, Nav_Drawer_Client::class.java)
-                    startActivity(intent)
-
+                    startActivity(Intent(this, Nav_Drawer_Client::class.java))
                 } else {
                     // Verificar si es una empresa
                     db.collection("empresas_turismogo")
@@ -88,8 +86,7 @@ class LoginActivity : AppCompatActivity() {
                         .addOnSuccessListener { empresaDocs ->
                             if (!empresaDocs.isEmpty) {
                                 // Es una empresa
-                                val intent = Intent(this, Nav_Drawer_Client::class.java)
-                                startActivity(intent)
+                                startActivity(Intent(this, Nav_Drawer_Empresas::class.java))
                             } else {
                                 Snackbar.make(
                                     findViewById(android.R.id.content),
